@@ -220,13 +220,13 @@ final class ShopCustomerOptionType extends AbstractType
             );
         }
 
-        $valueString = $price->getValueString(
+        $valueString = $price->getAmount() == 0 ? '' : $price->getValueString(
             $this->currencyContext->getCurrencyCode(),
             $this->localeContext->getLocaleCode(),
             $this->moneyFormatter
         );
         $name        = $value->getName();
-
-        return "{$name} ($valueString)";
+        $valueString = " ($valueString)";
+        return "{$name}$valueString";
     }
 }
